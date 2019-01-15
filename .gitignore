@@ -7,3 +7,9 @@ npm-debug.log
 *.dev
 .DS_Store
 private_key
+
+# terraform 
+*.tf
+*.tfstate
+terraform.tfstate.backup
+terraform.tfstate

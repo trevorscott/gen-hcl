@@ -59,7 +59,16 @@ provider "heroku" {
 }
 
 # Create a new application
-resource "heroku_app" "is_this_poison_oak" {
-  
+resource "heroku_app" "prodigal-api" {
+  name   = "my-cool-app"
+  region = "us"
+
+  config_vars {
+    FOOBAR = "baz"
+  }
+
+  buildpacks = [
+    "heroku/go"
+  ]
 }
 ```

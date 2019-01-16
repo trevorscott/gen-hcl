@@ -13,3 +13,4 @@ private_key
 *.tfstate
 terraform.tfstate.backup
 terraform.tfstate
+tf

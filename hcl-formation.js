@@ -11,7 +11,7 @@ function formationHCL(newHCLAppName, formationInfo) {
   const name    = newHCLAppName;
 
   return `resource "heroku_formation" "${name}" {
-    app = "$\{heroku_app.${name}.id\}"
+    app = "$\{heroku_app.${name}.name\}"
 
     type     = "${formationInfo.type}"
     quantity = "${formationInfo.quantity}"

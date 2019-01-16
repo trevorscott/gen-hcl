@@ -25,7 +25,7 @@ function* fetchAllAppInfo(appName, herokuAuthToken) {
 
   let appBuildId = appBuildList[0].id;
 
-  //get app build list
+  //get app build info
   let appBuildInfo = yield Episode7.call(
     fetchHeroku,
     `apps/${appName}/builds/${appBuildId}`,
@@ -62,7 +62,6 @@ function* fetchAllAppInfo(appName, herokuAuthToken) {
     herokuAuthToken
   );
 
-  // console.log(appAddonList);
   return {
     appInfo: appInfo,
     appConfigVars: appConfigVars,

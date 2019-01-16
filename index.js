@@ -14,6 +14,8 @@ const herokuAuthToken  = process.env.HEROKU_AUTH_TOKEN;
 const newHerokuAppName = process.env.NEW_HEROKU_APP_NAME;
 const newHCLAppName    = process.env.NEW_HCL_APP_NAME;
 
+
+// Gather all of the necessary info from the heroku API
 Episode7.run(fetchAllAppInfo, appName, herokuAuthToken)
 .then((allInfo) => {
   
@@ -30,7 +32,7 @@ Episode7.run(fetchAllAppInfo, appName, herokuAuthToken)
   const formationHCL = hclFormation(newHCLAppName, allInfo.appFormationInfo);
   
   //write HCL file to system
-  fs.writeFile('app.tf', `${appHCL}${addonHCL}${slugHCL}${releaseHCL}${formationHCL}`, 'utf8', (err)=>{
+  fs.writeFile(`${newHerokuAppName}.tf`, `${appHCL}${addonHCL}${slugHCL}${releaseHCL}${formationHCL}`, 'utf8', (err)=>{
     if (err) throw err;
     console.log('App HCL file generated!');
   });

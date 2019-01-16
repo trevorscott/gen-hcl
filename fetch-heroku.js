@@ -15,7 +15,6 @@ function* fetchHeroku(url, herokuAuthToken) {
     return rp(options)
       .then((body) => {
         var newBody = JSON.parse(body)
-        // console.log(newBody)
         return newBody
       })
       .catch(error => {

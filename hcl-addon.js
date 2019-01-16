@@ -6,16 +6,16 @@
 
 function addonHCL(newHCLAppName, appAddonList) {
   let addonsHCL = '';
-  appAddonList.forEach(addOn => {
-    addonsHCL= addonsHCL.concat(getSingleAddonHCL(newHCLAppName,addOn))
+  appAddonList.forEach((addOn,i) => {
+    addonsHCL= addonsHCL.concat(getSingleAddonHCL(newHCLAppName,addOn,i))
   })
   return addonsHCL;
 }
 
 
-function getSingleAddonHCL(name, addonInfo) {
-  return `resource "heroku_addon" "${name}" {
-    app = "$\{heroku_app.${name}.id\}"
+function getSingleAddonHCL(name, addonInfo,index) {
+  return `resource "heroku_addon" "${name}_${index}" {
+    app = "$\{heroku_app.${name}.name\}"
 
     plan = "${addonInfo.plan.name}"
     

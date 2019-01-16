@@ -7,6 +7,7 @@ Generate Terraform HCL code based off of existing Heroku assets.
 ```
 git clone git@github.com:trevorscott/gen-hcl.git
 cd gen-hcl
+npm install
 ```
 
 ## config

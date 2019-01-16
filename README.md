@@ -30,9 +30,9 @@ node index.js
 
 # output
 
-Running `node index.js` will create an `new-app-name.tf` file. 
+Running `node index.js` will create an `new-app-name.tf` file your current working directory. 
 
-# Run Terraform
+# Run Terraform to generate Heroku Resources
 
 ```
 terraform init

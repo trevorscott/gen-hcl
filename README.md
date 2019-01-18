@@ -40,7 +40,7 @@ HEROKU_AUTH_TOKEN="aaaa-bbbb-cccc-dddd"
 
 See [here](https://devcenter.heroku.com/articles/platform-api-quickstart#authentication) to generate a Heroku auth token.
 
-You need to specify the names of the new assets you will be creating. Use hyphens and underscores for the following enviornment variables as indicated below: 
+You need to specify the names of the new assets you will be creating. To follow Terraform naming conventions use hyphens and underscores for the following enviornment variables as indicated below: 
 
 ```
 NEW_HEROKU_APP_NAME="name-of-new-heroku-app"
@@ -54,7 +54,6 @@ In order to duplicate an app and all its dependencies from the common runtime to
 ```
 SPACE_TO_CREATE_APP="existing-private-space-name"
 ```
-
 
 # Generate HCL Config
 

@@ -51,9 +51,17 @@ terraform fmt
 terraform apply
 ```
 
+Be sure to clean up when you're done experimenting:
+
+```
+terraform destroy
+```
+
+And any delete unwanted `.tf` files.
+
 # Clone Common Runtime App to Private Spaces
 
-In order to duplicate an app and all its deps from the common runtime to private spaces add the name of the space as config to your `.env` file:
+In order to duplicate an app and all its dependencies from the common runtime to private spaces add the name of the space as config to your `.env` file:
 
 ```
 SPACE_TO_CREATE_APP="existing-private-space-name"

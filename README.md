@@ -1,6 +1,13 @@
 # gen-hcl
 
-Generate Terraform HCL code that represents existing Heroku assets. The generated HCL config can be used to duplicate Heroku apps, addons, slugs, formations and config vars.
+This proof of concept implmentation takes an existing heroku app name as an input and generates Terraform HCL / config for:
+
+1. the heroku app itself
+1. all addons attached to the app
+1. all app config vars 
+1. the app's most recent slug
+1. an app release
+1. the app's formation
 
 ⚠️ **Warning: This is a highly experimental project that is currently under development** ⚠️
 

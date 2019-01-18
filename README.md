@@ -11,12 +11,15 @@ This proof of concept implmentation takes an existing heroku app name as an inpu
 1. an app release
 1. the app's formation
 
+The resulting HCL can be used to duplicate an app and its critical dependencies by running `terraform apply`. The tool also gives users the option to duplicate common runtime applications into a private space.
+
 # Requirements
 
 1. Heroku Account
 1. Heroku App you want to duplicate
 1. [Terraform](https://www.terraform.io/downloads.html)
-1. Node version 10.x
+1. Node.js version 10.x & npm
+1. [A heroku auth token](https://devcenter.heroku.com/articles/platform-api-quickstart#authentication)
 
 # Setup
 
@@ -26,17 +29,32 @@ cd gen-hcl
 npm install
 ```
 
-### Enviornment Vars
+## Enviornment Vars
 
-create a `.env` file in the project root with the following config:
+create a `.env` file in the project root with the following config 
 
 ```
 HEROKU_APP_NAME="existing-heroku-app-name"
 HEROKU_AUTH_TOKEN="aaaa-bbbb-cccc-dddd"
+```
 
+See [here](https://devcenter.heroku.com/articles/platform-api-quickstart#authentication) to generate a Heroku auth token.
+
+You need to specify the names of the new assets you will be creating. Use hyphens and underscores for the following enviornment variables as indicated below: 
+
+```
 NEW_HEROKU_APP_NAME="name-of-new-heroku-app"
 NEW_HCL_APP_NAME="name_of_hcl_resources"
 ```
+
+### Clone Common Runtime App to Private Spaces
+
+In order to duplicate an app and all its dependencies from the common runtime to private spaces add the name of the space as config to your `.env` file:
+
+```
+SPACE_TO_CREATE_APP="existing-private-space-name"
+```
+
 
 # Generate HCL Config
 
@@ -46,7 +64,7 @@ start the tool from the project root:
 node index.js
 ```
 
-# Output
+### Output
 
 Running `node index.js` will create an `new-app-name.tf` file your current working directory. 
 
@@ -66,11 +84,5 @@ terraform destroy
 
 And any delete unwanted `.tf` files.
 
-# Clone Common Runtime App to Private Spaces
 
-In order to duplicate an app and all its dependencies from the common runtime to private spaces add the name of the space as config to your `.env` file:
-
-```
-SPACE_TO_CREATE_APP="existing-private-space-name"
-```
 

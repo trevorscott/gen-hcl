@@ -1,10 +1,17 @@
 # gen-hcl
 
-Generate Terraform HCL code based off of existing Heroku assets.
+Generate Terraform HCL code that represents existing Heroku assets. The generated HCL config can be used to duplicate Heroku apps, addons, slugs, formations and config vars.
 
 ⚠️ **Warning: This is a highly experimental project that is currently under development** ⚠️
 
-# setup
+# Requirements
+
+1. Heroku Account
+1. Heroku App you want to duplicate
+1. [Terraform](https://www.terraform.io/downloads.html)
+1. Node version 10.x
+
+# Setup
 
 ```
 git clone git@github.com:trevorscott/gen-hcl.git
@@ -12,9 +19,9 @@ cd gen-hcl
 npm install
 ```
 
-## config
+### Enviornment Vars
 
-create a `.env` file with the following config:
+create a `.env` file in the project root with the following config:
 
 ```
 HEROKU_APP_NAME="existing-heroku-app-name"
@@ -24,17 +31,19 @@ NEW_HEROKU_APP_NAME="name-of-new-heroku-app"
 NEW_HCL_APP_NAME="name_of_hcl_resources"
 ```
 
-# Run
+# Generate HCL Config
+
+start the tool from the project root:
 
 ```
 node index.js
 ```
 
-# output
+# Output
 
 Running `node index.js` will create an `new-app-name.tf` file your current working directory. 
 
-# Run Terraform to generate Heroku Resources
+# Run Terraform to Generate Heroku Resources
 
 ```
 terraform init
@@ -44,9 +53,9 @@ terraform apply
 
 # Clone Common Runtime App to Private Spaces
 
-You can use this tool to clone an existing common runtime app into private spaces. To do so you add the name of the space as config to your `.env` file:
+In order to duplicate an app and all its deps from the common runtime to private spaces add the name of the space as config to your `.env` file:
 
 ```
-SPACE_TO_CREATE_APP="8th-wonder"
+SPACE_TO_CREATE_APP="existing-private-space-name"
 ```
 

@@ -1,5 +1,8 @@
 {
   "name": "gen-hcl",
+  "engines": {
+    "node": ">=10.x"
+  },
   "version": "1.0.0",
   "description": "Generate Terraform HCL from existing Heroku assets",
   "main": "index.js",

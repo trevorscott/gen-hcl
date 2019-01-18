@@ -42,3 +42,11 @@ terraform fmt
 terraform apply
 ```
 
+# Clone Common Runtime App to Private Spaces
+
+You can use this tool to clone an existing common runtime app into private spaces. To do so you add the name of the space as config to your `.env` file:
+
+```
+SPACE_TO_CREATE_APP="8th-wonder"
+```
+

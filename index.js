@@ -10,9 +10,11 @@ const fs = require('fs');
 require('dotenv').config();
 
 const appName          = process.env.HEROKU_APP_NAME;
-const herokuAuthToken  = process.env.HEROKU_AUTH_TOKEN;
 const newHerokuAppName = process.env.NEW_HEROKU_APP_NAME;
 const newHCLAppName    = process.env.NEW_HCL_APP_NAME;
+
+const herokuAuthToken  = process.env.HEROKU_AUTH_TOKEN;
+const privateSpaceName = process.env.SPACE_TO_CREATE_APP;
 
 
 // Gather all of the necessary info from the heroku API
@@ -25,19 +27,19 @@ Episode7.run(fetchAllAppInfo, appName, herokuAuthToken)
                               allInfo.appInfo,
                               allInfo.appConfigVars,
                               allInfo.appBuildInfo,
-                              allInfo.appAddonList);
+                              allInfo.appAddonList,
+                              allInfo.spaceInfo);
   const addonHCL     = hclAddon(newHCLAppName, allInfo.appAddonList);
   const slugHCL      = hclSlug(newHCLAppName, allInfo.appSlugInfo);
   const releaseHCL   = hclRelease(newHCLAppName);
-  const formationHCL = hclFormation(newHCLAppName, allInfo.appFormationInfo);
-  
+  const formationHCL = hclFormation(newHCLAppName, allInfo.appFormationInfo, allInfo.spaceInfo);
+  console.log(`Successfully fetched all relevant Heroku App Info for app: ${appName}`)
+  console.log('Generating HCL Config...')
   //write HCL file to system
   fs.writeFile(`${newHerokuAppName}.tf`, `${appHCL}${addonHCL}${slugHCL}${releaseHCL}${formationHCL}`, 'utf8', (err)=>{
     if (err) throw err;
-    console.log('App HCL file generated!');
+    console.log('App HCL file generated!')
   });
-
-  console.log(`successfully fetched all relevant Heroku App Info for app: ${appName}`)
 })
 .catch(error => {
   console.log(`Application failure: ${error.stack}`);

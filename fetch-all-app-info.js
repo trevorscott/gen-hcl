@@ -61,6 +61,17 @@ function* fetchAllAppInfo(appName, herokuAuthToken) {
     `apps/${appName}/formation/${appFormationId}`,
     herokuAuthToken
   );
+  const privateSpaceName = process.env.SPACE_TO_CREATE_APP;
+  const spaceName = privateSpaceName ? privateSpaceName : appInfo.space;
+  let spaceInfo = undefined;
+  if (spaceName) {
+    //get space info
+    spaceInfo = yield Episode7.call(
+      fetchHeroku,
+      `spaces/${spaceName}`,
+      herokuAuthToken
+    );  
+  }
 
   return {
     appInfo: appInfo,
@@ -68,7 +79,8 @@ function* fetchAllAppInfo(appName, herokuAuthToken) {
     appBuildInfo: appBuildInfo,
     appAddonList : appAddonList,
     appSlugInfo : appSlugInfo,
-    appFormationInfo : appFormationInfo
+    appFormationInfo : appFormationInfo,
+    spaceInfo : spaceInfo
   }
 }
 

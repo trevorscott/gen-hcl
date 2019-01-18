@@ -1,5 +1,7 @@
 # gen-hcl
 
+⚠️ **Warning: This is a highly experimental project that is currently under development** ⚠️
+
 This proof of concept implmentation takes an existing heroku app name as an input and generates Terraform HCL / config for:
 
 1. the heroku app itself
@@ -8,8 +10,6 @@ This proof of concept implmentation takes an existing heroku app name as an inpu
 1. the app's most recent slug
 1. an app release
 1. the app's formation
-
-⚠️ **Warning: This is a highly experimental project that is currently under development** ⚠️
 
 # Requirements
 

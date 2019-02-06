@@ -34,7 +34,7 @@ npm install
 create a `.env` file in the project root with the following config 
 
 ```
-HEROKU_APP_NAME="existing-heroku-app-name"
+HEROKU_APP_NAMES="existing-heroku-app-name"
 HEROKU_AUTH_TOKEN="aaaa-bbbb-cccc-dddd"
 ```
 
@@ -53,6 +53,15 @@ In order to duplicate an app and all its dependencies from the common runtime to
 
 ```
 SPACE_TO_CREATE_APP="existing-private-space-name"
+```
+
+### Multi-App Support
+
+If you would like to generate HCL for multiple applications you can do so by specifying a comma seperated list of app names. You may also provide a prefix so that the newly generated HCL prefixes the new app names.
+
+```
+HEROKU_APP_NAMES="edm-relay,edm-stats,edm-stream,edm-dashboard,edm-ui"
+NEW_HEROKU_APPS_PREFIX="tf"
 ```
 
 # Generate HCL Config
@@ -85,10 +94,10 @@ And any delete unwanted `.tf` files.
 
 # Known Issues
 
-1. *Config Vars* : Be sure to double check your config variables, sometimes they do not map to your duplicated app correctly. No existing Add-On config vars are copied into your new TF config (because add-ons are recreated and set their own new config vars).
-1. *Slug Duplication & Javascript Bundles* : this tool duplicates slugs, so if your app is a javascript bundle with compile time config vars, the duplicated config vars might be incorrect.
-1. *Common Runtime to Private Space Add-On Mappings* : This tool does not map your common runtime Add-Ons to their private space plans. By default, only Common Runtime Add-On plans are used. Adjust your Terraform config accordingly. 
-1. *Data* : Heroku Data Add-Ons are duplicated, but no data is transferred. All data migrations, schema creations, kafka topics and consumer groups must be re-created manually.
+1. **Config Vars** : Be sure to double check your config variables, sometimes they do not map to your duplicated app correctly. No existing Add-On config vars are copied into your new TF config (because add-ons are recreated and set their own new config vars).
+1. **Slug Duplication & Javascript Bundles** : this tool duplicates slugs, so if your app is a javascript bundle with compile time config vars, the duplicated config vars might be incorrect.
+1. **Common Runtime to Private Space Add-On Mappings** : This tool does not map your common runtime Add-Ons to their private space plans. By default, only Common Runtime Add-On plans are used. Adjust your Terraform config accordingly. 
+1. **Data** : Heroku Data Add-Ons are duplicated, but no data is transferred. All data migrations, schema creations, kafka topics and consumer groups must be re-created manually.
 
 
 

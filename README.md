@@ -65,7 +65,7 @@ node index.js
 
 ### Output
 
-Running `node index.js` will create an `new-app-name.tf` file your current working directory. 
+Running `node index.js` will create `new-app-name.tf` in your current working directory. 
 
 # Run Terraform to Generate Heroku Resources
 
@@ -82,6 +82,13 @@ terraform destroy
 ```
 
 And any delete unwanted `.tf` files.
+
+# Known Issues
+
+1. *Config Vars* : Be sure to double check your config variables, sometimes they do not map to your duplicated app correctly. No existing Add-On config vars are copied into your new TF config (because add-ons are recreated and set their own new config vars).
+1. *Slug Duplication & Javascript Bundles* : this tool duplicates slugs, so if your app is a javascript bundle with compile time config vars, the duplicated config vars might be incorrect.
+1. *Common Runtime to Private Space Add-On Mappings* : This tool does not map your common runtime Add-Ons to their private space plans. By default, only Common Runtime Add-On plans are used. Adjust your Terraform config accordingly. 
+1. *Data* : Heroku Data Add-Ons are duplicated, but no data is transferred. All data migrations, schema creations, kafka topics and consumer groups must be re-created manually.
 
 
 

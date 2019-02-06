@@ -15,8 +15,7 @@ function appHCL(newHerokuAppName,
   const web_url = app.web_url;
   const acm     = app.acm;
   const internal_routing = app.internal_routing;
-  const organization     = app.organization ? app.organization : space.organization.name;
-
+  const organization     = app.organization ? app.organization : (space ? space.organization.name : '');
   const userConfigVars = getConfigVars(configVars, addOnList)
   const buildpacks = buildInfo.buildpacks.map(b => `"${b.url}"`);
 

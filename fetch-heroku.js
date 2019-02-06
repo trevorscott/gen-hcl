@@ -6,8 +6,9 @@ function* fetchHeroku(url, herokuAuthToken) {
     url: `https://api.heroku.com/${url}`,
     method: 'GET',
       headers: {
-        'Authorization': ` Bearer ${herokuAuthToken}`,
-        'Accept': ' application/vnd.heroku+json; version=3'
+        'Authorization': `Bearer ${herokuAuthToken}`,
+        'Accept': 'application/vnd.heroku+json; version=3',
+        'Range': 'id ..; order=desc'
       }
   }
 
